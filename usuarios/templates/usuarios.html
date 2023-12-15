@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/usuarios.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md card-dashboard">
+                <p class="text-card">Adicionar usuário</p>
+            </div>
+
+            <div class="col-md card-dashboard">
+                <p class="text-card">Atualizar usuário</p>
+            </div>
+        </div>
+        <div class="adicionar-cliente">
+            <form action="{% url 'usuarios' %}" method="POST">{% csrf_token %}
+                <div class="row">
+                        <div class="col-md">
+                            <p>Nome:</p>
+                            <input type="text" class="form-control" placeholder="Primeiro nome">
+                        </div>
+                        <div class="col-md">
+                            <p>Sobrenome:</p>
+                            <input type="text" class="form-control" placeholder="Sobrenome">
+                        </div>
+                </div>
+                <br>
+                <p>E-mail:</p>
+                <input type="email" class="form-control" placeholder="nome@email.com" name="email">
+                <br>
+                <p>CPF:</p>
+                <input type="text" class="form-control" placeholder="___.___.___-__" name="cpf">
+                <hr style="background-color:gray;">
+                <div class="add_evol">
+                    <h3>Evolução</h3>
+                    <span class="btn-add-evol" onclick="add_evol()">+ Adicionar evolução</span>
+      
+                    <div id="form-evol">
+      
+                    </div>
+      
+                </div>
+      
+                <br>
+                <input type="submit" value="Cadastrar" class="btn-principal">
+      
+            </form>
+            
+        </div>
+    </div>
+    <script src="{% static 'usuarios/js/usuarios.js' %}"></script>
+{% endblock %}
