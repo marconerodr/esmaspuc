@@ -7,6 +7,7 @@ from .models import PopulacaoUsuaria, Evolucao
 
 def usuarios(request):
     if request.method == "GET":
+<<<<<<< HEAD
         return render(request, 'usuarios.html')
     elif request.method == "POST":
         nome = request.POST.get('nome')
@@ -30,3 +31,9 @@ def usuarios(request):
             evolucao.save()
          
         return HttpResponse('teste')
+=======
+    	return render(request, 'usuarios.html')
+    elif request.method == "POST":
+        nome = request.POST.get()
+        sobrenome = request.POST.get()
+>>>>>>> 35fdcea366f444effca808e33302d944599adb38
