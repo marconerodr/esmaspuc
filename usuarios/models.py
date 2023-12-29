@@ -10,7 +10,7 @@ class PopulacaoUsuaria(models.Model):
         return self.nome
 
 class Evolucao(models.Model):
-    dia = models.DateTimeField()
+    dia = models.DateTimeField(default='2023-12-18 12:00:00')
     demanda = models.CharField(max_length=50)
     descricao = models.CharField(max_length=50)
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
