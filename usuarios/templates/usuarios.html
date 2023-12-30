@@ -8,16 +8,16 @@
 {% block 'dashboard' %}
     <div class="container">
         <div class="row">
-            <div class="col-md card-dashboard">
+            <div onclick="exibir_form('1')" class="col-md card-dashboard">
                 <p class="text-card">Adicionar usuário</p>
             </div>
 
-            <div class="col-md card-dashboard">
+            <div onclick="exibir_form('2')" class="col-md card-dashboard">
                 <p class="text-card">Atualizar usuário</p>
             </div>
         </div>
         <br>
-        <div class="adicionar-cliente">
+        <div id="add_usuario" class="add_usuario">
             <form action="{% url 'usuarios' %}" method="POST">{% csrf_token %}
                 <div class="row">
                         <div class="col-md">
@@ -68,6 +68,32 @@
             </form>
             
         </div>
+
+        <div id="att_usuario" class="att_usuario">
+            <p></p>
+            <select id="usuario-select" onchange="dados_usuario()" class="form-control">
+                {% for usuarios in usuarios %}
+                <option value="{{usuarios.id}}">{{usuarios.nome}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <hr>
+
+            <div id="form-att-usuario">
+                <p>Nome: </p>
+                <input id="nome" type="text" class="form-control">
+                <br>
+                <p>Sobrenome: </p>
+                <input id="sobrenome" type="text" class="form-control">
+                <br>
+                <p>E-mail: </p>
+                <input id="email" type="text" class="form-control">
+                <br>
+                <p>CPF: </p>
+                <input id="cpf" type="text" class="form-control">
+            </div>
+        </div>
+
     </div>
     <script src="{% static 'usuarios/js/usuarios.js' %}"></script>
 {% endblock %}

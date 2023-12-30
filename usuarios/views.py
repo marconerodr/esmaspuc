@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from . import views
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import PopulacaoUsuaria, Evolucao
 import re
+from django.core import serializers
+import json
 
 # Create your views here.
 
 def usuarios(request):
     if request.method == "GET":
-        return render(request, 'usuarios.html')
+        usuarios_list = PopulacaoUsuaria.objects.all()
+        return render(request, 'usuarios.html', {'usuarios': usuarios_list})
     elif request.method == "POST":
         nome = request.POST.get('nome')
         sobrenome = request.POST.get('sobrenome')
@@ -39,3 +42,9 @@ def usuarios(request):
             evolucao.save()
          
         return HttpResponse('teste')
+
+def att_usuario(request):
+    id_usuario = request.POST.get('id_usuario')
+    usuario = PopulacaoUsuaria.objects.filter(id=id_usuario)
+    usuario_json = json.loads(serializers.serialize('json', usuario))[0]['fields']
+    return JsonResponse(usuario_json)
