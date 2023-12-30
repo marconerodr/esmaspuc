@@ -8,6 +8,7 @@ import json
 
 # Create your views here.
 
+# Aqui, fazemos a conexão entre os campos do banco de dados e os campos na página Usuarios
 def usuarios(request):
     if request.method == "GET":
         usuarios_list = PopulacaoUsuaria.objects.all()
@@ -21,6 +22,7 @@ def usuarios(request):
         demanda = request.POST.getlist('demanda')
         descricao = request.POST.getlist('descricao')
         
+        # Aqui, testamos se o CPF inserido já existe no banco de dados e testamos se é um CPF válido, usando uma expressão regular, para poder salvar as alterações.
         testecpf = PopulacaoUsuaria.objects.filter(cpf=cpf)
         if testecpf.exists():
             return render(request, 'usuarios.html', {'nome': nome, 'sobrenome': sobrenome, 'email': email, 'evolucao': zip (dia, demanda, descricao)})
@@ -42,6 +44,8 @@ def usuarios(request):
             evolucao.save()
          
         return HttpResponse('teste')
+
+# A função abaixo seleciona o usuário pela id, filtra no banco de dados as informações dele e retorna em formato json apenas as informações necessários. 
 
 def att_usuario(request):
     id_usuario = request.POST.get('id_usuario')

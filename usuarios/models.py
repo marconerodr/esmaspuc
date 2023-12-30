@@ -18,6 +18,7 @@ class Evolucao(models.Model):
     def __str__(self) -> str:
         return self.demanda
 
+# Os campos abaixo são protótipos de possível escalabilidade do banco de dados, de acordo com a futura demanda do projeto.
 
     # # Nome completo
     # nome_completo = models.CharField(max_length=100)

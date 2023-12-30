@@ -1,3 +1,5 @@
+// Abaixo, inserimos o formulário de evoluções de usuário, conforme a necessidade do profissional técnico.
+
 function add_evol(){
     container = document.getElementById("form-evol")
 
@@ -7,6 +9,8 @@ function add_evol(){
 
 
 }
+
+// Abaixo, mudamos a tela da página Usuários, de acordo com a opção selecionada, para adicionar um usuário ou atualizar um já existente.
 
 function exibir_form(tipo){
     add_usuario = document.getElementById('add_usuario')
@@ -21,6 +25,7 @@ function exibir_form(tipo){
     }
 }
 
+// Abaixo, usamos um CSRF Token para identificar o usuário selecionado na tela de Atualizar usuário e puxar os dados dele pra exibição.
 function dados_usuario(){
     usuario = document.getElementById('usuario-select')
     csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
