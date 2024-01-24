@@ -71,4 +71,4 @@ def update_evolucao(request, id):
     list_evolucao = Evolucao.objects.filter(demanda=demanda)
     if list_evolucao.exists():
         return HttpResponse('Demanda já existente')
-    return HttpResponse('Dados alterados com sucesso')
+    return HttpResponse('Dados alterados')
