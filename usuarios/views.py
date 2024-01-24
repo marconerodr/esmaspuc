@@ -5,6 +5,7 @@ from .models import PopulacaoUsuaria, Evolucao
 import re
 from django.core import serializers
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -50,5 +51,24 @@ def usuarios(request):
 def att_usuario(request):
     id_usuario = request.POST.get('id_usuario')
     usuario = PopulacaoUsuaria.objects.filter(id=id_usuario)
+    evolucoes = Evolucao.objects.filter(usuario=usuario[0])
+        
     usuario_json = json.loads(serializers.serialize('json', usuario))[0]['fields']
-    return JsonResponse(usuario_json)
+    evolucoes_json = json.loads(serializers.serialize('json', evolucoes))
+    evolucoes_json = [{'fields': i['fields'], 'id': i['pk']} for i in evolucoes_json]
+    
+    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json}
+
+    print(evolucoes_json)
+    return JsonResponse(data)
+
+@csrf_exempt
+def update_evolucao(request, id):
+    demanda = request.POST.get('demanda')
+    descricao = request.POST.get('descricao')
+
+    evolucao = Evolucao.objects.get(id=id)
+    list_evolucao = Evolucao.objects.filter(demanda=demanda)
+    if list_evolucao.exists():
+        return HttpResponse('Demanda já existente')
+    return HttpResponse('Dados alterados com sucesso')

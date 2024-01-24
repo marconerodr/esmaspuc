@@ -46,15 +46,36 @@ function dados_usuario(){
         document.getElementById('form-att-usuario').style.display = 'block'
 
         nome = document.getElementById('nome')
-        nome.value = data['nome']
+        nome.value = data['usuario']['nome']
 
         sobrenome = document.getElementById('sobrenome')
-        sobrenome.value = data['sobrenome']
+        sobrenome.value = data['usuario']['sobrenome']
 
         cpf = document.getElementById('cpf')
-        cpf.value = data['cpf']
+        cpf.value = data['usuario']['cpf']
 
         email = document.getElementById('email')
-        email.value = data['email']
+        email.value = data['usuario']['email']
+
+        div_evolucoes = document.getElementById('evolucoes');
+        div_evolucoes.innerHTML = ""
+        for (let i = 0; i < data['evolucoes'].length; i++) {
+            console.log(data['evolucoes'][i]);
+
+            div_evolucoes.innerHTML += "<form action='/usuarios/update_evolucao/" + data['evolucoes'][i]['id'] + "/' method='POST'>" +
+                "<div class='row'>" +
+                "<div class='col-md'>" +
+                "<input class='form-control' type='text' name='demanda' value='" + data['evolucoes'][i]['fields']['demanda'] + "'>" +
+                "</div>" +
+                "<div class='col-md'>" +
+                "<input class='form-control' type='text' name='descricao' value='" + data['evolucoes'][i]['fields']['descricao'] + "'>" +
+                "</div>" +
+                "<div class='col-md'>" +
+                "<input class='btn btn-success' type='submit' value='Salvar'>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</form>";
+        }
     })
 }
