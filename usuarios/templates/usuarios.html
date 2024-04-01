@@ -72,6 +72,7 @@
         <div id="att_usuario" class="att_usuario">
             <p></p>
             <select id="usuario-select" onchange="dados_usuario()" class="form-control">
+                <option value=""></option>
                 {% for usuarios in usuarios %}
                 <option value="{{usuarios.id}}">{{usuarios.nome}}</option>
                 {% endfor %}

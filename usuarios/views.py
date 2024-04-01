@@ -6,6 +6,8 @@ import re
 from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -68,7 +70,20 @@ def update_evolucao(request, id):
     descricao = request.POST.get('descricao')
 
     evolucao = Evolucao.objects.get(id=id)
-    list_evolucao = Evolucao.objects.filter(demanda=demanda)
+    list_evolucao = Evolucao.objects.filter(demanda=demanda).exclude(id=id)
     if list_evolucao.exists():
         return HttpResponse('Demanda já existente')
+    
+    evolucao.demanda = demanda
+    evolucao.descricao = descricao
+    evolucao.save()
     return HttpResponse('Dados alterados')
+
+def excluir_evolucao(request, id):
+    try:
+        evolucao = Evolucao.objects.get(id=id)
+        evolucao.delete()
+        return redirect(reverse('usuarios')+f'?aba=att_usuario&id_usuario={id}')
+    except:
+        #TODO: exibir mensagem de erro
+        return redirect(reverse('usuarios')+f'?aba=att_usuario&id_usuario={id}')

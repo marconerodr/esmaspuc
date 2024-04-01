@@ -59,10 +59,8 @@ function dados_usuario(){
 
         div_evolucoes = document.getElementById('evolucoes');
         div_evolucoes.innerHTML = ""
-        for (let i = 0; i < data['evolucoes'].length; i++) {
-            console.log(data['evolucoes'][i]);
-
-            div_evolucoes.innerHTML += "<form action='/usuarios/update_evolucao/" + data['evolucoes'][i]['id'] + "/' method='POST'>" +
+        for (i = 0; i < data['evolucoes'].length; i++) {
+            div_evolucoes.innerHTML += "<form action='/usuarios/update_evolucao/" + data['evolucoes'][i]['id'] + "' method='POST'>" +
                 "<div class='row'>" +
                 "<div class='col-md'>" +
                 "<input class='form-control' type='text' name='demanda' value='" + data['evolucoes'][i]['fields']['demanda'] + "'>" +
@@ -73,9 +71,11 @@ function dados_usuario(){
                 "<div class='col-md'>" +
                 "<input class='btn btn-success' type='submit' value='Salvar'>" +
                 "</div>" +
+                "<div>" +
+                "<a class='btn btn-danger' href='/usuarios/excluir_evolucao/" + data['evolucoes'][i]['id'] + "'>EXCLUIR</a>" +
                 "</div>" +
                 "</div>" +
-                "</form>";
+                "</form>" ;
         }
     })
 }
