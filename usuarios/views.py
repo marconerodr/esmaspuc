@@ -7,7 +7,8 @@ from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
+
 
 # Create your views here.
 
@@ -56,10 +57,13 @@ def att_usuario(request):
     evolucoes = Evolucao.objects.filter(usuario=usuario[0])
         
     usuario_json = json.loads(serializers.serialize('json', usuario))[0]['fields']
+    
+    usuario_id = json.loads(serializers.serialize('json', usuario))[0]['pk']
+    
     evolucoes_json = json.loads(serializers.serialize('json', evolucoes))
     evolucoes_json = [{'fields': i['fields'], 'id': i['pk']} for i in evolucoes_json]
     
-    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json}
+    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json, 'usuario_id': usuario_id}
 
     print(evolucoes_json)
     return JsonResponse(data)
@@ -87,3 +91,24 @@ def excluir_evolucao(request, id):
     except:
         #TODO: exibir mensagem de erro
         return redirect(reverse('usuarios')+f'?aba=att_usuario&id_usuario={id}')
+
+def update_usuario(request, id):
+    body = json.loads(request.body)
+    
+    nome = body['nome']
+    sobrenome = body['sobrenome']
+    email = body['email']
+    cpf = body['cpf']
+
+    usuario = get_object_or_404(PopulacaoUsuaria, id=id)
+    try:
+        usuario.nome = nome
+        usuario.sobrenome = sobrenome
+        usuario.email = email
+        usuario.cpf = cpf
+        usuario.save()
+        return JsonResponse({'status': '200', 'nome': nome, 'sobrenome': sobrenome, 'email': email, 'cpf': cpf})
+    except:
+        return JsonResponse({'status':'500'})
+
+    return JsonResponse({'teste': 'teste'})

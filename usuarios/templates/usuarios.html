@@ -81,6 +81,7 @@
             <hr>
 
             <div id="form-att-usuario">
+                <input type="hidden" id="usuario_id">
                 <p>Nome: </p>
                 <input id="nome" type="text" class="form-control">
                 <br>
@@ -92,6 +93,8 @@
                 <br>
                 <p>CPF: </p>
                 <input id="cpf" type="text" class="form-control">
+                <br>
+                <input type="submit" value="salvar" class="btn btn-success" onclick="update_usuario()">
                 <hr>
                 <br>
                 <h3>Evoluções</h3>

@@ -45,6 +45,9 @@ function dados_usuario(){
     }).then(function(data){
         document.getElementById('form-att-usuario').style.display = 'block'
 
+        id = document.getElementById('usuario_id')
+        id.value = data['usuario_id']
+
         nome = document.getElementById('nome')
         nome.value = data['usuario']['nome']
 
@@ -69,13 +72,69 @@ function dados_usuario(){
                 "<input class='form-control' type='text' name='descricao' value='" + data['evolucoes'][i]['fields']['descricao'] + "'>" +
                 "</div>" +
                 "<div class='col-md'>" +
-                "<input class='btn btn-success' type='submit' value='Salvar'>" +
+                "<input class='btn btn-success' type='submit' value='Salvar evolução'>" +
                 "</div>" +
                 "<div>" +
-                "<a class='btn btn-danger' href='/usuarios/excluir_evolucao/" + data['evolucoes'][i]['id'] + "'>EXCLUIR</a>" +
+                "<a class='btn btn-danger' href='/usuarios/excluir_evolucao/" + data['evolucoes'][i]['id'] + "'>Excluir evolução</a>" +
                 "</div>" +
                 "</div>" +
                 "</form>" ;
+        }
+    })
+}
+
+function update_usuario(){
+    nome = document.getElementById('nome').value
+    sobrenome = document.getElementById('sobrenome').value
+    email = document.getElementById('email').value
+    cpf = document.getElementById('cpf').value
+    id = document.getElementById('usuario_id').value
+
+    fetch('/usuarios/update_usuario/' + id + '/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
+        body: JSON.stringify({
+            nome: nome,
+            sobrenome: sobrenome,
+            email: email,
+            cpf: cpf
+        })
+    }).then(function(result){
+        return result.json()
+    }).then(function(data){
+        var homeSection = document.querySelector('.home-section');
+
+        if(data['status'] == '200'){
+        nome = data['nome']
+        sobrenome = data['sobrenome']
+        email = data['email']
+        cpf = data['cpf']
+       
+        var successAlert = document.createElement('div');
+            successAlert.classList.add('alert', 'alert-success');
+            successAlert.textContent = 'Alterado com sucesso';
+            // Adicionando o alerta ao topo de homeSection
+            homeSection.insertBefore(successAlert, homeSection.firstChild);
+            // Adicionando o alerta ao topo de homeSection
+            homeSection.insertBefore(successAlert, homeSection.firstChild);
+            // Removendo o alerta após 3 segundos
+            setTimeout(function() {
+                successAlert.remove();
+            }, 3000);
+        }else{
+            var errorAlert = document.createElement('div');
+            errorAlert.classList.add('alert', 'alert-danger');
+            errorAlert.textContent = 'Ocorreu algum erro';
+            // Adicionando o alerta ao topo de homeSection
+            homeSection.insertBefore(errorAlert, homeSection.firstChild);
+            // Adicionando o alerta ao topo de homeSection
+            homeSection.insertBefore(errorAlert, homeSection.firstChild);
+            // Removendo o alerta após 3 segundos
+            setTimeout(function() {
+                errorAlert.remove();
+            }, 3000);
         }
     })
 }
