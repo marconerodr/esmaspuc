@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import FormServico
 from django.http import HttpResponse, FileResponse
-from .models import Servico
+from .models import Servico, ServicoAdicional
 from fpdf import FPDF
 from io import BytesIO
 # Create your views here.
@@ -59,3 +59,17 @@ def relatorio(request, identificador):
     pdf_bytes = BytesIO(pdf_content)
 
     return FileResponse(pdf_bytes, as_attachment=True, filename=f"relatorio-{servico.protocolo}.pdf")
+
+def servico_adicional(request):
+    identificador_servico = request.POST.get('identificador_servico')
+    titulo = request.POST.get('titulo')
+    descricao = request.POST.get('descricao')
+
+    servico_adicional = ServicoAdicional(titulo=titulo, descricao=descricao)
+    servico_adicional.save()
+
+    servico = Servico.objects.get(identificador=identificador_servico)
+    servico.servicos_adicionais.add(servico_adicional)
+    servico.save()
+
+    return render(request, 'confirmacao.html', {'identificador_servico': identificador_servico})

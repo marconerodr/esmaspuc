@@ -6,4 +6,5 @@ urlpatterns = [
     path('listar_servico/', views.listar_servico, name="listar_servico"),
     path('servico/<str:identificador>', views.servico, name="servico"),
     path('relatorio/<str:identificador>', views.relatorio, name="relatorio"),
+    path('servico_adicional', views.servico_adicional, name="servico_adicional"),
 ]
