@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <!-- Link para Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+zE8XQwY4F7Q9MVrRcggjliW7LwC2I2t0nRE6sH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css" rel="stylesheet">
+    <!-- Seu CSS personalizado -->
+    <style>
+        /* Estilo para o banner */
+        .banner {
+            height: 66vh; /* 1/3 da altura da tela */
+            background-image: url('https://diariodovale.com.br/wp-content/uploads/2021/07/foto-sede-da-smac-em-vr-2021-07-31.jpg'); /* Substitua pelo caminho da sua imagem */
+            background-size: 100% auto;
+            background-position: center;
+            position: relative;
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 255, 0.2); /* Filtro azul claro */
+        }
+    </style>
+{% endblock %}
+
+{% block 'dashboard' %}
+<body>
+
+    <div class="container-fluid banner">
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle">
+                        <i class="bx bx-search"></i> <!-- Ícone branco -->
+                    </div>
+                    <h4>Encontrar um usuário</h4>
+                    <p class="text-muted">Aqui, você verá a relação de usuários na área de abrangência do seu equipamento.</p>
+                    <button class="btn btn-primary">Acessar</button>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle sm">
+                        <i class="bx bx-file"></i> <!-- Ícone branco -->
+                    </div>
+                    <h4>Atendimentos e relatórios</h4>
+                    <p class="text-muted">Verifique os atendimentos realizados na sua unidade e emita relatórios de LSE dos usuários.</p>
+                    <button class="btn btn-primary">Acessar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link para Bootstrap JS (opcional, se você estiver usando componentes do Bootstrap que requerem JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-xjE3S3qRvvr3Lh+GfjtDqp9PEXl3VCr5QlMP7iFp+AUo1B1Kdi8Ker8rkcjLJKIv" crossorigin="anonymous"></script>
+</body>
+
+{% endblock %}

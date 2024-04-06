@@ -8,11 +8,13 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
 # Aqui, fazemos a conexão entre os campos do banco de dados e os campos na página Usuarios
+@login_required(login_url="minha_auth/login/")
 def usuarios(request):
     if request.method == "GET":
         usuarios_list = PopulacaoUsuaria.objects.all()
@@ -50,7 +52,7 @@ def usuarios(request):
         return HttpResponse('teste')
 
 # A função abaixo seleciona o usuário pela id, filtra no banco de dados as informações dele e retorna em formato json apenas as informações necessários. 
-
+@login_required(login_url="minha_auth/login/")
 def att_usuario(request):
     id_usuario = request.POST.get('id_usuario')
     usuario = PopulacaoUsuaria.objects.filter(id=id_usuario)
@@ -68,6 +70,7 @@ def att_usuario(request):
     print(evolucoes_json)
     return JsonResponse(data)
 
+@login_required(login_url="minha_auth/login/")
 @csrf_exempt
 def update_evolucao(request, id):
     demanda = request.POST.get('demanda')
@@ -83,6 +86,7 @@ def update_evolucao(request, id):
     evolucao.save()
     return HttpResponse('Dados alterados')
 
+@login_required(login_url="minha_auth/login/")
 def excluir_evolucao(request, id):
     try:
         evolucao = Evolucao.objects.get(id=id)
@@ -92,6 +96,7 @@ def excluir_evolucao(request, id):
         #TODO: exibir mensagem de erro
         return redirect(reverse('usuarios')+f'?aba=att_usuario&id_usuario={id}')
 
+@login_required(login_url="minha_auth/login/")
 def update_usuario(request, id):
     body = json.loads(request.body)
     
@@ -110,5 +115,3 @@ def update_usuario(request, id):
         return JsonResponse({'status': '200', 'nome': nome, 'sobrenome': sobrenome, 'email': email, 'cpf': cpf})
     except:
         return JsonResponse({'status':'500'})
-
-    return JsonResponse({'teste': 'teste'})

@@ -4,8 +4,10 @@ from django.http import HttpResponse, FileResponse
 from .models import Servico, ServicoAdicional
 from fpdf import FPDF
 from io import BytesIO
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required(login_url="minha_auth/login/")
 def novo_servico(request):
     if request.method =="GET":
         form = FormServico()
@@ -19,15 +21,18 @@ def novo_servico(request):
         else:
             return render(request, 'novo_servico.html', {'form': form})
         
+@login_required(login_url="minha_auth/login/")
 def listar_servico(request):
     if request.method == "GET":
         servicoss = Servico.objects.all()
         return render(request, 'listar_servico.html', {'servicos': servicoss})
 
+@login_required(login_url="minha_auth/login/")
 def servico(request, identificador):
     servico = get_object_or_404(Servico, identificador=identificador)
     return render(request, 'servico.html', {'servico': servico})
 
+@login_required(login_url="minha_auth/login/")
 def relatorio(request, identificador):
     servico = get_object_or_404(Servico, identificador=identificador)
 
@@ -60,6 +65,7 @@ def relatorio(request, identificador):
 
     return FileResponse(pdf_bytes, as_attachment=True, filename=f"relatorio-{servico.protocolo}.pdf")
 
+@login_required(login_url="minha_auth/login/")
 def servico_adicional(request):
     identificador_servico = request.POST.get('identificador_servico')
     titulo = request.POST.get('titulo')
