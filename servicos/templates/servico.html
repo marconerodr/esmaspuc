@@ -10,6 +10,8 @@
     <br>
     <br>
     <div class="container">
+        <a href="{% url 'relatorio' servico.identificador %}">Gerar relatório</a>
+        <br>
         {{servico.titulo}}
     </div>
 {% endblock %}
