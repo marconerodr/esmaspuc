@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'clientes/css/clientes.css' %}">
+    <link rel="stylesheet" href="{% static 'servicos/css/listar_servico.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <br>
+    <br>
+    <div class="container-fluid distanciamento">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Identificador</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Serviço</th>
+                <th scope="col">Data de Concessão</th>
+                <th scope="col">Situação</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for servico in servicos %}
+                    <tr>
+                        <td><a href="{% url 'servico' servico.identificador %}">{{servico.identificador}}</a></td>
+                        <td>{{servico.usuario}}</td>
+                        <td>{{servico.titulo}}</td>
+                        <td>{{servico.data_concessao}}</td>
+                        <td>
+                            {% if servico.finalizado %}
+                                <span class="badge badge-success">Finalizado</span>
+                            {% else %}
+                                <span class="badge badge-info">Em processo</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+{% endblock %}
