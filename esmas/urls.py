@@ -8,4 +8,5 @@ urlpatterns = [
     path('usuarios/', include('usuarios.urls')),
     path('servicos/', include('servicos.urls')),
     path('minha_auth/', include('minha_auth.urls')),
+    path('accounts/', include("allauth.urls")),
 ]

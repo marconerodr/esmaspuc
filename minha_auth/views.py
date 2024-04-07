@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.contrib import auth
 from django.contrib.auth import login as login_django
 import logging
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -45,5 +47,12 @@ def login(request):
         else:
             return render(request, 'login.html', {'error_message': 'E-mail ou senha inválidos.'})  # Corrigido o retorno da renderização
 
+@login_required
 def home(request):
     return render(request, 'home.html')
+
+@login_required
+def logout(request):
+    auth.logout(request)
+    return redirect("/")
+

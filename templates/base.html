@@ -43,7 +43,17 @@
           </a>
           <span class="tooltip">Atendimentos</span>
         </li>
+        <li>
+          <a href="{% url 'logout' %}">
+            <i class='bx bx-log-out' ></i>
+            <span class="links_name">Sair do sistema</span>
+          </a>
+          <span class="tooltip">Sair do sistema</span>
+        </li>
         </ul>
+      <div class="sidebar-footer">
+          <p>Logado como: {{ user.username }}</p>
+      </div>
       </div>
       
       <section class="home-section">
