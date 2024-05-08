@@ -17,7 +17,7 @@ class Evolucao(models.Model):
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.demanda
+        return f"{self.usuario.nome} {self.usuario.sobrenome} - {self.demanda}"
 
 class DadosPessoais(models.Model):
     nome_social = models.CharField(max_length=100, blank=True)
@@ -41,7 +41,7 @@ class DadosPessoais(models.Model):
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nis
+        return f"{self.usuario.nome} {self.usuario.sobrenome} - {self.nis}"
 
 class Residencia(models.Model):
     tipo_imovel = models.CharField(max_length=4, choices=ChoicesTipoImovel.choices)
@@ -58,4 +58,4 @@ class Residencia(models.Model):
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.tipo_imovel
+        return f"{self.usuario.nome} {self.usuario.sobrenome}"
