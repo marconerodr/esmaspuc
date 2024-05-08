@@ -35,6 +35,133 @@
                 <br>
                 <p>CPF:</p>
                 <input type="text" class="form-control" placeholder="___.___.___-__" name="cpf" value="{{cpf}}">
+                <br>
+                <!-- Nome Social -->
+                <p>Nome Social:</p>
+                <input type="text" class="form-control" placeholder="Nome Social" name="nome_social" value="{{nome_social}}">
+                <br>
+
+                <!-- NIS -->
+                <p>NIS (Número de Identificação Social):</p>
+                <input type="text" class="form-control" placeholder="NIS" name="nis" value="{{nis}}">
+                <br>
+
+                <!-- Data de Nascimento -->
+                <p>Data de Nascimento:</p>
+                <input type="date" class="form-control" name="data_nascimento" value="{{data_nascimento}}">
+                <br>
+
+                <!-- Identidade de Gênero -->
+                <p>Identidade de Gênero:</p>
+                <select class="form-control" name="identidade_genero">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="HCIS">Homem cisgênero</option>
+                    <option value="MCIS">Mulher cisgênero</option>
+                    <option value="HTRA">Homem transgênero</option>
+                    <option value="MTRA">Mulher transgênero</option>
+                    <option value="NBIN">Pessoa não-binária</option>
+                    <option value="OUTR">Outros</option>
+                </select>
+                <br>
+
+                <!-- Cor/Raça -->
+                <p>Cor/Raça:</p>
+                <select class="form-control" name="cor_raca">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="BRAN">Branco</option>
+                    <option value="PRET">Preto</option>
+                    <option value="PARD">Pardo</option>
+                    <option value="INDI">Indígena</option>
+                    <option value="AMAR">Amarelo</option>
+                    <option value="OUTR">Outros</option>
+                </select>
+                <br>
+
+                <!-- Estado Civil -->
+                <p>Estado Civil:</p>
+                <select class="form-control" name="estado_civil">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="SOLT">Solteiro</option>
+                    <option value="CASA">Casado</option>
+                    <option value="DIVO">Divorciado</option>
+                    <option value="VIUV">Viúvo</option>
+                    <option value="UNES">União Estável</option>
+                </select>
+                <br>
+
+                <!-- Endereço -->
+                <p>Endereço:</p>
+                <input type="text" class="form-control" placeholder="Endereço" name="endereco" value="{{endereco}}">
+                <br>
+
+                <!-- Telefone -->
+                <p>Telefone:</p>
+                <input type="text" class="form-control" placeholder="Telefone" name="telefone" value="{{telefone}}">
+                <br>
+
+                <!-- Naturalidade -->
+                <p>Naturalidade:</p>
+                <input type="text" class="form-control" placeholder="Naturalidade" name="naturalidade" value="{{naturalidade}}">
+                <br>
+
+                <!-- Tempo de Residência no Município -->
+                <p>Tempo de Residência no Município (em meses):</p>
+                <input type="number" class="form-control" placeholder="Tempo de Residência" name="tempo_residencia_municipio" value="{{tempo_residencia_municipio}}">
+                <br>
+
+                <!-- RG -->
+                <p>RG (Registro Geral):</p>
+                <input type="text" class="form-control" placeholder="RG" name="rg" value="{{rg}}">
+                <br>
+
+                <!-- Número da Certidão de Nascimento ou Casamento -->
+                <p>Número da Certidão de Nascimento ou Casamento:</p>
+                <input type="text" class="form-control" placeholder="Certidão de Nascimento ou Casamento" name="certidao_nascimento_casamento" value="{{certidao_nascimento_casamento}}">
+                <br>
+
+                <!-- Número do Título de Eleitor -->
+                <p>Número do Título de Eleitor:</p>
+                <input type="text" class="form-control" placeholder="Título de Eleitor" name="titulo_eleitor" value="{{titulo_eleitor}}">
+                <br>
+
+                <!-- Nível de Escolaridade -->
+                <p>Nível de Escolaridade:</p>
+                <select class="form-control" name="nivel_escolaridade">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="FUNI">Ensino Fundamental Incompleto</option>
+                    <option value="FUNC">Ensino Fundamental Completo</option>
+                    <option value="MEDI">Ensino Médio Incompleto</option>
+                    <option value="MEDC">Ensino Médio Completo</option>
+                    <option value="SUPI">Ensino Superior Incompleto</option>
+                    <option value="SUPC">Ensino Superior Completo</option>
+                </select>
+                <br>
+
+                <!-- Ocupação -->
+                <p>Ocupação:</p>
+                <input type="text" class="form-control" placeholder="Ocupação" name="ocupacao" value="{{ocupacao}}">
+                <br>
+
+                <!-- Renda -->
+                <p>Renda:</p>
+                <input type="text" class="form-control" placeholder="Renda" name="renda" value="{{renda}}">
+                <br>
+
+                <!-- Extrema Pobreza -->
+                <p>Esta pessoa vive em condições de extrema pobreza?</p>
+                <select class="form-control" name="extrema_pobreza">
+                    <option value="True">Sim</option>
+                    <option value="False">Não</option>
+                </select>
+                <br>
+
+                <!-- Pessoa com Deficiência -->
+                <p>Esta é uma Pessoa com Deficiência?</p>
+                <select class="form-control" name="pessoa_com_deficiencia">
+                    <option value="True">Sim</option>
+                    <option value="False">Não</option>
+                </select>
+                <br>
                 <hr style="background-color:gray;">
                 <div class="add_evol">
                     <h3>Evolução</h3>
