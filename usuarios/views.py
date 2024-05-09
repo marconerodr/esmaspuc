@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from . import views
 from django.http import HttpResponse, JsonResponse
-from .models import PopulacaoUsuaria, Evolucao, DadosPessoais
+from .models import PopulacaoUsuaria, Evolucao, DadosPessoais, Residencia
 import re
 from django.core import serializers
 import json
@@ -19,7 +19,8 @@ def usuarios(request):
     if request.method == "GET":
         usuarios_list = PopulacaoUsuaria.objects.all()
         dados_pessoais_list = DadosPessoais.objects.all()
-        return render(request, 'usuarios.html', {'usuarios': usuarios_list, 'dados_pessoais': dados_pessoais_list})
+        residencia_list = Residencia.objects.all()
+        return render(request, 'usuarios.html', {'usuarios': usuarios_list, 'dados_pessoais': dados_pessoais_list, 'residencia': residencia_list})
     elif request.method == "POST":
         nome = request.POST.get('nome')
         sobrenome = request.POST.get('sobrenome')
@@ -48,6 +49,19 @@ def usuarios(request):
         renda = request.POST.get('renda')
         extrema_pobreza = request.POST.get('extrema_pobreza')
         pessoa_com_deficiencia = request.POST.get('pessoa_com_deficiencia')
+
+        # Obter os campos para os dados da residência
+        tipo_imovel = request.POST.get('tipo_imovel')
+        valor_aluguel = request.POST.get('valor_aluguel')
+        numero_comodos = request.POST.get('numero_comodos')
+        material_paredes = request.POST.get('material_paredes')
+        material_piso = request.POST.get('material_piso')
+        material_telhado = request.POST.get('material_telhado')
+        estado_conservacao = request.POST.get('estado_conservacao')
+        fornecimento_agua = request.POST.get('fornecimento_agua')
+        fornecimento_energia = request.POST.get('fornecimento_energia')
+        coleta_esgoto = request.POST.get('coleta_esgoto')
+        coleta_lixo = request.POST.get('coleta_lixo')
         
         # Aqui, testamos se o CPF inserido já existe no banco de dados e testamos se é um CPF válido, usando uma expressão regular, para poder salvar as alterações.
         testecpf = PopulacaoUsuaria.objects.filter(cpf=cpf)
@@ -88,6 +102,23 @@ def usuarios(request):
             usuario=populacaoUsuaria  # Associar os dados pessoais ao usuário criado
         )
         dados_pessoais.save()
+        
+        residencia = Residencia(
+            tipo_imovel=tipo_imovel,
+            valor_aluguel=valor_aluguel,
+            numero_comodos=numero_comodos,
+            material_paredes=material_paredes,
+            material_piso=material_piso,
+            material_telhado=material_telhado,
+            estado_conservacao=estado_conservacao,
+            fornecimento_agua=fornecimento_agua,
+            fornecimento_energia=fornecimento_energia,
+            coleta_esgoto=coleta_esgoto,
+            coleta_lixo=coleta_lixo,
+            usuario=populacaoUsuaria  # Associar a residência ao usuário criado
+        )
+        residencia.save()
+
 
         for dia, demanda, descricao in zip(dia, demanda, descricao):
             evolucao = Evolucao(dia=dia, demanda=demanda, descricao=descricao, usuario=populacaoUsuaria)
@@ -101,18 +132,34 @@ def att_usuario(request):
     id_usuario = request.POST.get('id_usuario')
     usuario = PopulacaoUsuaria.objects.filter(id=id_usuario)
     evolucoes = Evolucao.objects.filter(usuario=usuario[0])
+    dadospessoais = DadosPessoais.objects.filter(usuario=usuario[0])
+    residencia = Residencia.objects.filter(usuario=usuario[0])
         
     usuario_json = json.loads(serializers.serialize('json', usuario))[0]['fields']
-    
+
     usuario_id = json.loads(serializers.serialize('json', usuario))[0]['pk']
     
     evolucoes_json = json.loads(serializers.serialize('json', evolucoes))
     evolucoes_json = [{'fields': i['fields'], 'id': i['pk']} for i in evolucoes_json]
-    
-    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json, 'usuario_id': usuario_id}
 
-    print(evolucoes_json)
+    dadospessoais_json = json.loads(serializers.serialize('json', dadospessoais))
+    residencia_json = json.loads(serializers.serialize('json', residencia))
+
+    dados_pessoais = {
+    **dadospessoais_json[0]['fields'],  # Assumindo que dadospessoais_json é uma lista
+    'id': dadospessoais_json[0]['pk']
+    }
+
+    residencia_campos = {
+    **residencia_json[0]['fields'],
+    'id': residencia_json[0]['pk']
+    }
+    
+    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json, 'usuario_id': usuario_id, 'dadospessoais': dados_pessoais, 'residencia': residencia_campos}
+
+    # print(usuario_json, dados_pessoais, residencia_campos)
     return JsonResponse(data)
+
 
 @login_required(login_url="minha_auth/login/")
 @csrf_exempt

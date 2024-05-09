@@ -60,6 +60,95 @@ function dados_usuario(){
         email = document.getElementById('email')
         email.value = data['usuario']['email']
 
+/*         // Preencher os campos de DadosPessoal
+        nome_social = document.getElementById('nome_social')
+        nome_social.value = data['dadospessoais']['nome_social']
+        
+        nis = document.getElementById('nis');
+        nis.value = data['dadospessoais']['nis'];
+
+        data_nascimento = document.getElementById('data_nascimento');
+        data_nascimento.value = data['dadospessoais']['data_nascimento'];
+
+        identidade_genero = document.getElementById('identidade_genero');
+        identidade_genero.value = data['dadospessoais']['identidade_genero'];
+
+        cor_raca = document.getElementById('cor_raca');
+        cor_raca.value = data['dadospessoais']['cor_raca'];
+
+        estado_civil = document.getElementById('estado_civil');
+        estado_civil.value = data['dadospessoais']['estado_civil'];
+
+        endereco = document.getElementById('endereco');
+        endereco.value = data['dadospessoais']['endereco'];
+
+        telefone = document.getElementById('telefone');
+        telefone.value = data['dadospessoais']['telefone'];
+
+        naturalidade = document.getElementById('naturalidade');
+        naturalidade.value = data['dadospessoais']['naturalidade'];
+
+        tempo_residencia_municipio = document.getElementById('tempo_residencia_municipio');
+        tempo_residencia_municipio.value = data['dadospessoais']['tempo_residencia_municipio'];
+
+        rg = document.getElementById('rg');
+        rg.value = data['dadospessoais']['rg'];
+
+        certidao_nascimento_casamento = document.getElementById('certidao_nascimento_casamento');
+        certidao_nascimento_casamento.value = data['dadospessoais']['certidao_nascimento_casamento'];
+
+        titulo_eleitor = document.getElementById('titulo_eleitor');
+        titulo_eleitor.value = data['dadospessoais']['titulo_eleitor'];
+
+        nivel_escolaridade = document.getElementById('nivel_escolaridade');
+        nivel_escolaridade.value = data['dadospessoais']['nivel_escolaridade'];
+
+        ocupacao = document.getElementById('ocupacao');
+        ocupacao.value = data['dadospessoais']['ocupacao'];
+
+        renda = document.getElementById('renda');
+        renda.value = data['dadospessoais']['renda'];
+
+        extrema_pobreza = document.getElementById('extrema_pobreza');
+        extrema_pobreza.value = data['dadospessoais']['extrema_pobreza'];
+
+        pessoa_com_deficiencia = document.getElementById('pessoa_com_deficiencia');
+        pessoa_com_deficiencia.value = data['dadospessoais']['pessoa_com_deficiencia'];
+
+        // Preencher os campos de Residencia
+        tipo_imovel = document.getElementById('tipo_imovel');
+        tipo_imovel.value = data['residencia_campos']['tipo_imovel'];
+
+        valor_aluguel = document.getElementById('valor_aluguel');
+        valor_aluguel.value = data['residencia_campos']['valor_aluguel'];
+
+        numero_comodos = document.getElementById('numero_comodos');
+        numero_comodos.value = data['residencia_campos']['numero_comodos'];
+
+        material_paredes = document.getElementById('material_paredes');
+        material_paredes.value = data['residencia_campos']['material_paredes'];
+
+        material_piso = document.getElementById('material_piso');
+        material_piso.value = data['residencia_campos']['material_piso'];
+
+        material_telhado = document.getElementById('material_telhado');
+        material_telhado.value = data['residencia_campos']['material_telhado'];
+
+        estado_conservacao = document.getElementById('estado_conservacao');
+        estado_conservacao.value = data['residencia_campos']['estado_conservacao'];
+
+        fornecimento_agua = document.getElementById('fornecimento_agua');
+        fornecimento_agua.value = data['residencia_campos']['fornecimento_agua'];
+
+        fornecimento_energia = document.getElementById('fornecimento_energia');
+        fornecimento_energia.value = data['residencia_campos']['fornecimento_energia'];
+
+        coleta_esgoto = document.getElementById('coleta_esgoto');
+        coleta_esgoto.value = data['residencia_campos']['coleta_esgoto'];
+
+        coleta_lixo = document.getElementById('coleta_lixo');
+        coleta_lixo.value = data['residencia_campos']['coleta_lixo'];
+ */
         div_evolucoes = document.getElementById('evolucoes');
         div_evolucoes.innerHTML = ""
         for (i = 0; i < data['evolucoes'].length; i++) {

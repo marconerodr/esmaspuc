@@ -8,7 +8,7 @@ class PopulacaoUsuaria(models.Model):
     cpf = models.CharField(max_length=12)
 
     def __str__(self) -> str:
-        return f"{self.nome} {self.sobrenome} - CPF {self.cpf}"
+        return f"{self.nome} {self.sobrenome} - CPF: {self.cpf}"
 
 class Evolucao(models.Model):
     dia = models.DateTimeField(default='2023-12-18 12:00:00')
@@ -17,7 +17,7 @@ class Evolucao(models.Model):
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f"{self.usuario.nome} {self.usuario.sobrenome} - {self.cpf} - {self.demanda}"
+        return f"{self.usuario.nome} {self.usuario.sobrenome} - CPF: {self.usuario.cpf} - {self.demanda}"
 
 class DadosPessoais(models.Model):
     nome_social = models.CharField(max_length=100, blank=True)
@@ -41,7 +41,7 @@ class DadosPessoais(models.Model):
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.usuario.nome} {self.usuario.sobrenome} - {self.cpf}"
+        return f"{self.usuario.nome} {self.usuario.sobrenome} - CPF: {self.usuario.cpf}"
 
 class Residencia(models.Model):
     tipo_imovel = models.CharField(max_length=4, choices=ChoicesTipoImovel.choices)
@@ -58,4 +58,4 @@ class Residencia(models.Model):
     usuario = models.ForeignKey(PopulacaoUsuaria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.usuario.nome} {self.usuario.sobrenome} - CPF {self.usuario.cpf}"
+        return f"{self.usuario.nome} {self.usuario.sobrenome} - CPF: {self.usuario.cpf}"
