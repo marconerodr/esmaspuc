@@ -26,6 +26,11 @@
             height: 100%;
             background-color: rgba(0, 0, 255, 0.2); /* Filtro azul claro */
         }
+
+        .circle {
+            width: 100px; /* Defina o tamanho do círculo */
+            height: 100px; /* Defina o tamanho do círculo */
+        }
     </style>
 {% endblock %}
 
@@ -39,22 +44,32 @@
         <div class="row">
             <div class="col-md">
                 <div class="text-center">
-                    <div class="bg-primary rounded-circle">
-                        <i class="bx bx-search"></i> <!-- Ícone branco -->
+                    <div class="d-flex justify-content-center align-items-center circle-container"> <!-- Flex container -->
+                        <div class="bg-primary rounded-circle circle d-flex justify-content-center align-items-center">
+                            <i class="bx bx-search text-white" style="font-size: 2em;"></i> <!-- Ícone branco -->
+                        </div>
                     </div>
+                    <br>
                     <h4>Encontrar um usuário</h4>
                     <p class="text-muted">Aqui, você verá a relação de usuários na área de abrangência do seu equipamento.</p>
-                    <button class="btn btn-primary">Acessar</button>
+                    <a href="/usuarios/">
+                        <button class="btn btn-primary">Acessar</button>
+                    </a>
                 </div>
             </div>
             <div class="col-md">
                 <div class="text-center">
-                    <div class="bg-primary rounded-circle sm">
-                        <i class="bx bx-file"></i> <!-- Ícone branco -->
+                    <div class="d-flex justify-content-center align-items-center circle-container"> <!-- Flex container -->
+                        <div class="bg-primary rounded-circle circle d-flex justify-content-center align-items-center">
+                            <i class="bx bx-file text-white" style="font-size: 2em;"></i> <!-- Ícone branco -->
+                        </div>
                     </div>
+                    <br>
                     <h4>Atendimentos e relatórios</h4>
                     <p class="text-muted">Verifique os atendimentos realizados na sua unidade e emita relatórios de LSE dos usuários.</p>
-                    <button class="btn btn-primary">Acessar</button>
+                    <a href="/servicos/listar_servico/">
+                        <button class="btn btn-primary">Acessar</button>
+                    </a>
                 </div>
             </div>
         </div>
