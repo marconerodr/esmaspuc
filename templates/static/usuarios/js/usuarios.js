@@ -60,7 +60,7 @@ function dados_usuario(){
         email = document.getElementById('email')
         email.value = data['usuario']['email']
 
-/*         // Preencher os campos de DadosPessoal
+        // Preencher os campos de DadosPessoal
         nome_social = document.getElementById('nome_social')
         nome_social.value = data['dadospessoais']['nome_social']
         
@@ -148,7 +148,7 @@ function dados_usuario(){
 
         coleta_lixo = document.getElementById('coleta_lixo');
         coleta_lixo.value = data['residencia_campos']['coleta_lixo'];
- */
+
         div_evolucoes = document.getElementById('evolucoes');
         div_evolucoes.innerHTML = ""
         for (i = 0; i < data['evolucoes'].length; i++) {

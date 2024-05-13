@@ -29,7 +29,7 @@ class DadosPessoais(models.Model):
     endereco = models.CharField(max_length=200)
     telefone = models.CharField(max_length=15)
     naturalidade = models.CharField(max_length=50)
-    tempo_residencia_municipio = models.PositiveIntegerField()
+    tempo_residencia_municipio = models.CharField(max_length=200)
     rg = models.CharField(max_length=20)
     certidao_nascimento_casamento = models.CharField(max_length=20)
     titulo_eleitor = models.CharField(max_length=12, blank=True)
