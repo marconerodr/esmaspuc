@@ -145,7 +145,7 @@ def att_usuario(request):
     dadospessoais_json = json.loads(serializers.serialize('json', dadospessoais))
     residencia_json = json.loads(serializers.serialize('json', residencia))
 
-    dados_pessoais = {
+    """ dados_pessoais = {
     **dadospessoais_json[0]['fields'],  # Assumindo que dadospessoais_json é uma lista
     'id': dadospessoais_json[0]['pk']
     }
@@ -153,9 +153,10 @@ def att_usuario(request):
     residencia_campos = {
     **residencia_json[0]['fields'],
     'id': residencia_json[0]['pk']
-    }
-    
-    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json, 'usuario_id': usuario_id, 'dadospessoais': dados_pessoais, 'residencia': residencia_campos}
+    } """
+
+    data = {'usuario': usuario_json, 'evolucoes': evolucoes_json, 'usuario_id': usuario_id}
+    # data = {'usuario': usuario_json, 'evolucoes': evolucoes_json, 'usuario_id': usuario_id, 'dadospessoais': dados_pessoais, 'residencia': residencia_campos}
 
     # print(usuario_json, dados_pessoais, residencia_campos)
     return JsonResponse(data)
